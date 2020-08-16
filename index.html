@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="col-md-6 m-auto py-5">
+            <div class="input-group mb-3">
+                <input id="location" type="text" class="form-control" placeholder="Enter a location for Weather ...">
+                <div class="input-group-append">
+                    <button id="inputBtn" type="button" class="btn btn-danger">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="weather-status text-white text-center">
+            <img id="weatherIcon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 id="cityName">Dhaka</h1>
+            <h4 id="country">Bangladesh</h4>
+            <h3><span id="temperature">38.06</span>&deg;C</h3>
+            <h1 id="weatherType" class="lead">Clouds</h1>
+        </div>
+    </div>
+<script>
+  document.getElementById('inputBtn').addEventListener('click', function(){
+      const location =  document.getElementById('location').value;
+
+
+       fetch('https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=61032b9bbb2918584c8e37c4e0ec13de')
+.then(res => res.json())
+.then(data => {
+    const weatherType = data.weather[0].main ;
+    const temperature = data.main.temp;
+    const cityName = data.name;
+    const weatherIcon = data.weather[0].icon;
+    const country = data.sys.country;
+    document.getElementById('cityName').innerText = cityName;
+    document.getElementById('temperature').innerText = temperature;
+    document.getElementById('weatherType').innerText = weatherType;
+    document.getElementById('weatherIcon').innerText = weatherIcon;
+    document.getElementById('country').innerText = country;
+})
+  })
+
+
+
+
+
+</script>
+</body>
+
+</html>
