@@ -41,7 +41,7 @@
       const location =  document.getElementById('location').value;
 
 
-       fetch('https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=61032b9bbb2918584c8e37c4e0ec13de')
+       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=61032b9bbb2918584c8e37c4e0ec13de`)
 .then(res => res.json())
 .then(data => {
     const weatherType = data.weather[0].main ;
